@@ -157,7 +157,8 @@ log1pNumber.signature = n1
  * @private
  */
 export function modNumber (x, y) {
-  if (y > 0) {
+  return x - y * Math.floor(x / y)
+  /*if (y > 0) {
     // We don't use JavaScript's % operator here as this doesn't work
     // correctly for x < 0 and x === 0
     // see https://en.wikipedia.org/wiki/Modulo_operation
@@ -167,8 +168,9 @@ export function modNumber (x, y) {
   } else { // y < 0
     // TODO: implement mod for a negative divisor
     throw new Error('Cannot calculate mod for a negative divisor')
-  }
+  }*/
 }
+
 modNumber.signature = n2
 
 /**
@@ -332,3 +334,13 @@ export function normNumber (x) {
   return Math.abs(x)
 }
 normNumber.signature = n1
+
+// Call the modNumber function
+try {
+  const result = modNumber(0.15, 0.05);
+  console.log('Result:', result);
+  console.log(Math.floor(-6 / 5))
+} catch (error) {
+  console.error('Error:', error.message);
+
+}
